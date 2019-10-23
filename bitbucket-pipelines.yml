@@ -11,4 +11,12 @@ pipelines:
         caches:
           - pip
         script: # Modify the commands below to build your repository.
-          - pip install -r requirements.txt
+        - pipe: atlassian/heroku-deploy:1.1.0
+          variables:
+            HEROKU_API_KEY: $HEROKU_API
+            HEROKU_APP_NAME: $APP_NAME
+            ZIP_FILE: 'compressed.tgz'
+            # WAIT: '<boolean>' # Optional.
+            # DEBUG: '<boolean>' # Optional
+
+         # - pip install -r requirements.txt
