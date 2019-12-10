@@ -1,6 +1,5 @@
 from tensorflow import keras
 import matplotlib.pyplot as plt
-from tensorflow.keras import datasets
 
 (train_x, train_y), (test_x, test_y) = keras.datasets.mnist.load_data()
 model = keras.models.load_model('MNIST_Number_AI.h5')
@@ -14,13 +13,14 @@ class MNIST_AI:
         
     def matplotlib_plt(self):
         plt.imshow(self.x_for_plt)
+        plt.show()
         
     def model_predict(self):
-        prediction = model.predict(self.x)[0]
+        prediction = model.predict(self.x.astype(float))[0]
         prediction = prediction.tolist()
         prediction = prediction.index(max(prediction))
         print(prediction)
 
-a = MNIST_AI(x = test_x[23])
+a = MNIST_AI(x = test_x[546])
 a.matplotlib_plt()
 a.model_predict()
